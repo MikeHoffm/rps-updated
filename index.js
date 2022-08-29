@@ -18,23 +18,23 @@ let tieScore = 0;
 function playRound (playerSelection = playerChoice, computerSelection = getComputerChoice()){
     
     if (playerSelection === computerSelection) {
-        results.textContent = ("Tie! What are the odds? " + computerSelection + " was chosen by both players.");
+        message.textContent = ("Tie! What are the odds? " + computerSelection + " was chosen by both players.");
         tieScore++;
         return (tieScore);
     } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        results.textContent =("Dwayne would be proud! " + playerSelection + " beats " + computerSelection + ".");
+        message.textContent =("Dwayne would be proud! " + playerSelection + " beats " + computerSelection + ".");
         pScore.textContent = "Your Score: " + ++playerScore;
         return (playerScore);
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        results.textContent =("Don't underestimate Paper! " + playerSelection + " beats " + computerSelection + ".");
+        message.textContent =("Don't underestimate Paper! " + playerSelection + " beats " + computerSelection + ".");
         pScore.textContent = "Your Score: " + ++playerScore;
         return (playerScore);
     } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        results.textContent =("You're cutting em up out there! " + playerSelection + " beats " + computerSelection + ".");
+        message.textContent =("You're cutting em up out there! " + playerSelection + " beats " + computerSelection + ".");
         pScore.textContent = "Your Score: " + ++playerScore;
         return (playerScore);
     } else {
-        results.textContent =("You lose this round. " + playerSelection + " was beaten by " + computerSelection + ".");
+        message.textContent =("You lose this round. " + playerSelection + " was beaten by " + computerSelection + ".");
         cScore.textContent = "Computer Score: " + ++computerScore;
         return (computerScore);
     }
@@ -44,11 +44,13 @@ function keepScore () {
         //once player score or comp score reaches 5 announce winner 
         if (playerScore === 5) {
             mResult.textContent = " Congratulations You Win! You got it like that huh? Refresh to try again."
+            notBad.play();
             disableBtn();
         } else if (computerScore === 5) {
             mResult.textContent = "Damn. Maybe next time bucko. Refresh to try again "
             buttons.disabled = true;
             disableBtn();
+            tryagain.play();
         }
     }
 
@@ -57,6 +59,10 @@ function keepScore () {
 //Create a variable to store the buttons in the DOM
 const buttons = document.querySelectorAll('.btn');        
 
+//sounds
+const pop = new Audio('sounds/pop1.mp3');
+const notBad = new Audio ('sounds/notbad.mp3');
+const lose = new Audio ('sounds/tryagain.mp3');
 
 //Add eventListener to each button by looping through them with forEach, assign playerChoice to the textContent of the current button pressed
 //call playRound
@@ -65,12 +71,15 @@ buttons.forEach((button) => {
        playerChoice = button.textContent;
        playRound();
        keepScore();
+       pop.play();
     });
   });
 
   //Create variable for round results 
 const results = document.querySelector('.results');
 
+//Variable to hold round winning message
+const message = document.querySelector('.message01');
 //player score
 const pScore = document.querySelector('.p-score');
 pScore.textContent = "Your score: " + playerScore;
