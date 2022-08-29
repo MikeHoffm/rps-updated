@@ -1,0 +1,54 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    font-family: 'Vollkorn', serif;
+    text-align: center;
+    border: 5px solid blue;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 3em;
+    color: rgb(237, 227, 227);
+}
+
+.game-container {
+    border: 5px solid red;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    background-color: white;
+}
+
+.match-result {
+    border: 15px solid #447e8a;
+    margin: 20% 5% 5% 5%;
+    background-color: 
+    #74BDCB;
+}
+
+.player-picks {
+    border: 11px solid #3b8999;
+    border-radius: 16px;
+    margin: 5%;
+    background-color: #49a9bc;
+}
+
+button {
+    padding: 1em;
+    margin: 2%;
+    font-size: 2em;
+    color: white;
+    background-color: salmon;
+    border: 2px solid white;
+    border-radius: 16px;
+}
+
+.score-container {
+    border: 15px solid #ca7559;
+    border-radius: 16px;
+    margin: 5%;
+    background-color:#FFA384;
+}
